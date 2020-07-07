@@ -1,0 +1,40 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js" type="application/javascript"></script>
+    <script src="js/require.js"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+
+        require(['js/Validator.js'], function (Validator) {
+            window.validator = new Validator({
+                //container: 'formContainer'
+            });
+        });
+
+        function checkIt() {
+            if (validator.validateForm('formContainer'))
+                console.log('FORM HAS BEEN SUCCESSFULLY VALIDATED.');
+            else {
+                console.log('FORM HAS FAILED VALIDATION.');
+                console.log(validator._errorList);
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div id=formContainer>
+        <input id='email-input' type='text' data-type='email' placeholder="enter email" />
+        <input id='phone-input' type='text' data-type='phone' placeholder="enter phone" />
+        <input id='required-input' type='text' data-type='required' placeholder="enter anything" />
+        <input id='date-input' type='text' data-type='date' placeholder="enter date" />
+        <input id='no-special-input' type='text' data-type='no-special' placeholder="no special" />
+        <input id='required-and-no-special' type='text' data-type='required, no-special' placeholder="enter anything no special" />
+        <input type='button' value='Check the form' onClick='checkIt()' />
+    </div>
+
+    <ul id="error-list"></ul>
+
+</body>
+</html>
